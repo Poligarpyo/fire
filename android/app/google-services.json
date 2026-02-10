@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "322575550703",
+    "project_id": "trades-e533d",
+    "storage_bucket": "trades-e533d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:322575550703:android:bd5ec8c40d743aa822f31a",
+        "android_client_info": {
+          "package_name": "com.example.temp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfrmj0i2Jo5UkkQIicvgHUC3VMLDuZ1g8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
