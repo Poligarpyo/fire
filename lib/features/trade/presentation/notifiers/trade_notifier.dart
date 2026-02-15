@@ -3,8 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
  
  
 import '../../domain/usecases/calculate_total_profit_usecase.dart';
-import '../states/paginated_trade_state.dart';
-import '../../domain/repositories/trade_repository.dart';
+import '../states/paginated_trade_state.dart'; 
 import '../../domain/usecases/get_trade_usecase.dart';
 
 class TradeNotifier extends StateNotifier<PaginatedTradeState> {

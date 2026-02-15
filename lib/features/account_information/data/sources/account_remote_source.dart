@@ -22,7 +22,7 @@ class AccountRemoteSource {
       }
 
       final Response response = await DioHelper.post(
-        '${Endpoints.peanutUrl}${Endpoints.peanutAccount}',
+        '${Endpoints.peanutUrl}${Endpoints.exampleAccount}',
         data: {
           "login": login,
           "token": token,
@@ -49,7 +49,7 @@ class AccountRemoteSource {
       }
 
       final Response response = await dio.post(
-        '${Endpoints.peanutUrl}${Endpoints.peanutLastFourNumber}',
+        '${Endpoints.peanutUrl}${Endpoints.exampleNumber}',
         data: {
           "login": login,
           "token": token,

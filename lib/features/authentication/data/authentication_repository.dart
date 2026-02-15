@@ -3,7 +3,6 @@ import 'package:riverpod/riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../constants/endpoints.dart';
-import '../../../core/storage/auth_local_datasource.dart';
 import '../../../core/storage/auth_local_datasource_provider.dart';
 import '../../../data/repository/network_repository.dart';
 import '../domain/login_request.dart';
@@ -16,7 +15,7 @@ part 'authentication_repository.g.dart';
 abstract class AuthenticationRepository {
   /// Authenticates a user with the given [username] and [password].
   /// Returns a [LoginResponse] containing the authentication details.
-  Future<LoginResponse> login(String username, String password);
+  Future<LoginResponse> login(String phone, String password);
 
   /// Registers a new user with the given [username] and [password].
   /// Returns a [RegisterResponse] containing the registration details.
@@ -32,22 +31,21 @@ class HttpAuthRepository implements AuthenticationRepository {
   /// The Dio instance used for making HTTP requests.
   Dio get dio => ref.read(networkRepositoryProvider);
   @override
-  Future<LoginResponse> login(String username, String password) async {
+  Future<LoginResponse> login(String phone, String password) async {
     try {
       // 1️⃣ Call API
       final Response<dynamic> response = await dio.post(
-        Endpoints.peanutLogin,
-        data: LoginCredentials(login: username, password: password),
+        Endpoints.exampleLogin,
+        data: LoginCredentials(phone: phone, password: password),
       );
 
       // 2️⃣ Parse response
       final LoginResponse loginResponse =
           LoginResponse.fromJson(response.data as Map<String, dynamic>);
 
-       
       await Future.wait([
         ref.read(authLocalDataSourceProvider).saveToken(loginResponse.token),
-        ref.read(authLocalDataSourceProvider).saveLogin(username),
+        ref.read(authLocalDataSourceProvider).saveLogin(phone),
       ]);
 
       // 4️⃣ Set token in NetworkRepository (for API headers)

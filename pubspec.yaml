@@ -64,6 +64,11 @@ dependencies:
   lottie: ^2.3.0
   shimmer: ^3.0.0
   pull_to_refresh: ^2.0.0
+  geolocator: ^14.0.2
+  telephony: ^0.2.0
+  permission_handler: ^12.0.1
+  image_picker: ^1.2.1
+  path: ^1.9.1
 
   
 dev_dependencies:
@@ -86,7 +91,6 @@ dev_dependencies:
   rider: ^0.0.1
   hive_ce_generator: ^1.9.1
   riverpod_test: ^0.1.9
-
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

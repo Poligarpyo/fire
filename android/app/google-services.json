@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "322575550703",
-    "project_id": "trades-e533d",
-    "storage_bucket": "trades-e533d.firebasestorage.app"
+    "project_number": "472204405524",
+    "project_id": "fire-5aec2",
+    "storage_bucket": "fire-5aec2.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:322575550703:android:bd5ec8c40d743aa822f31a",
+        "mobilesdk_app_id": "1:472204405524:android:33bbc90ff031856eb9b001",
         "android_client_info": {
           "package_name": "com.example.temp"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCfrmj0i2Jo5UkkQIicvgHUC3VMLDuZ1g8"
+          "current_key": "AIzaSyBTqbzr1ciLqfKkfTYeItoi9V5CWxmRtKk"
         }
       ],
       "services": {

@@ -32,7 +32,7 @@ class TradeRemoteSource {
       }
 
       final Response response = await networkRepository.state.post(
-        '${Endpoints.peanutTrade}',
+        '${Endpoints.exampleHistory}',
         data: {
           "login": login,
           "token": token,

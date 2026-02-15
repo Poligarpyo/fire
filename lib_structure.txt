@@ -15,6 +15,7 @@ lib
 │       ├── theme_ui_model.freezed.dart
 │       └── theme_ui_model.g.dart
 ├── constants
+│   ├── app_colors.dart
 │   ├── assets.dart
 │   ├── dio_helper.dart
 │   ├── endpoints.dart
@@ -43,7 +44,8 @@ lib
 │       └── network_repository.g.dart
 ├── exceptions
 │   ├── network_exceptions.dart
-│   └── no_internet_exception.dart
+│   ├── no_internet_exception.dart
+│   └── requestPermissions.dart
 ├── features
 │   ├── account_information
 │   │   ├── data
@@ -114,28 +116,37 @@ lib
 │   │   │       └── get_cached_user.g.dart
 │   │   └── presentation
 │   │       ├── login
-│   │       │   ├── auth_ui_model.dart
-│   │       │   ├── auth_ui_model.freezed.dart
-│   │       │   ├── auth_ui_model.g.dart
 │   │       │   ├── backup
 │   │       │   │   ├── login_screen copy.dart
-│   │       │   │   └── login_screen.dart
-│   │       │   ├── login_controller.dart
-│   │       │   ├── login_controller.g.dart
+│   │       │   │   ├── login_screen.dart
+│   │       │   │   └── modern.dart
+│   │       │   ├── controller
+│   │       │   │   ├── auth_ui_model.dart
+│   │       │   │   ├── auth_ui_model.freezed.dart
+│   │       │   │   ├── auth_ui_model.g.dart
+│   │       │   │   ├── login_controller.dart
+│   │       │   │   └── login_controller.g.dart
 │   │       │   └── login_screen.dart
 │   │       ├── register
-│   │       │   └── register_dialog.dart
+│   │       │   ├── backup
+│   │       │   │   ├── modern.dart
+│   │       │   │   └── register_screen.dart
+│   │       │   ├── controller
+│   │       │   │   └── register_controller.dart
+│   │       │   └── register_screen.dart
 │   │       ├── state
 │   │       │   └── auth_state_provider.dart
 │   │       └── widgets
-│   │           ├── buildBrandSection.dart
-│   │           ├── buildDivider.dart
-│   │           ├── buildLoginButton.dart
-│   │           ├── buildModernTextField.dart
-│   │           ├── buildOptionsRow.dart
-│   │           ├── buildSocialButton.dart
-│   │           ├── buildSocialLoginOptions.dart
-│   │           ├── buildWelcomeSection.dart
+│   │           ├── backup
+│   │           │   ├── buildLoginButton.dart
+│   │           │   ├── buildModernTextField.dart
+│   │           │   ├── buildOptionsRow.dart
+│   │           │   ├── buildRegisterButton.dart
+│   │           │   ├── buildSocialButton.dart
+│   │           │   ├── buildSocialLoginOptions.dart
+│   │           │   └── buildWelcomeSection.dart
+│   │           ├── custom_button.dart
+│   │           ├── custom_text_field.dart
 │   │           └── handleLogin.dart
 │   ├── home
 │   │   └── presentation
@@ -143,7 +154,6 @@ lib
 │   │       │   └── home_screen.dart
 │   │       └── widgets
 │   │           └── widgets
-│   │               ├── CardItem.dart
 │   │               ├── DashboardCard.dart
 │   │               ├── Drawer.dart
 │   │               ├── header.dart
@@ -175,6 +185,40 @@ lib
 │   │       │   └── promotion_screen.dart
 │   │       ├── states
 │   │       └── widgets
+│   │           ├── CTAButton.dart
+│   │           ├── EmptyState.dart
+│   │           ├── PromotionCard.dart
+│   │           └── PromotionCardSkeleton.dart
+│   ├── report_incident
+│   │   ├── data
+│   │   │   ├── model
+│   │   │   │   ├── report_incident_model.dart
+│   │   │   │   ├── report_incident_model.freezed.dart
+│   │   │   │   └── report_incident_model.g.dart
+│   │   │   ├── repositories
+│   │   │   │   └── report_incident_repository_impl.dart
+│   │   │   └── sources
+│   │   │       └── report_incident_remote_source.dart
+│   │   ├── domain
+│   │   │   ├── entities
+│   │   │   │   └── report_incident.dart
+│   │   │   ├── repositories
+│   │   │   │   └── report_incident_repository.dart
+│   │   │   └── usecases
+│   │   │       └── send_report_incident_usecase.dart
+│   │   └── presentation
+│   │       ├── notifiers
+│   │       │   └── report_incident_notifier.dart
+│   │       ├── providers
+│   │       │   └── report_incident_providers.dart
+│   │       ├── screen
+│   │       │   ├── backup
+│   │       │   │   └── report_incident.dart
+│   │       │   └── report_incident.dart
+│   │       ├── states
+│   │       │   ├── report_incident_state.dart
+│   │       │   └── report_incident_state.freezed.dart
+│   │       └── widgets
 │   ├── templates
 │   │   ├── data
 │   │   │   ├── model
@@ -190,71 +234,41 @@ lib
 │   │       ├── screen
 │   │       ├── states
 │   │       └── widgets
-│   ├── trade
-│   │   ├── data
-│   │   │   ├── model
-│   │   │   │   ├── trade_model.dart
-│   │   │   │   ├── trade_model.freezed.dart
-│   │   │   │   └── trade_model.g.dart
-│   │   │   ├── repositories
-│   │   │   │   └── trade_repository_impl.dart
-│   │   │   └── sources
-│   │   │       └── trade_remote_source.dart
-│   │   ├── domain
-│   │   │   ├── entities
-│   │   │   │   └── trade.dart
-│   │   │   ├── repositories
-│   │   │   │   └── trade_repository.dart
-│   │   │   └── usecases
-│   │   │       ├── calculate_total_profit_usecase.dart
-│   │   │       └── get_trade_usecase.dart
-│   │   └── presentation
-│   │       ├── notifiers
-│   │       │   └── trade_notifier.dart
-│   │       ├── providers
-│   │       │   └── trade_providers.dart
-│   │       ├── screens
-│   │       │   └── trade_screen.dart
-│   │       ├── states
-│   │       │   └── paginated_trade_state.dart
-│   │       └── widgets
-│   │           ├── card.dart
-│   │           ├── inrow.dart
-│   │           └── MetaItem.dart
-│   └── trails
-│       ├── audit
-│       │   ├── data
-│       │   │   ├── model
-│       │   │   │   ├── audit_model.dart
-│       │   │   │   ├── audit_model.freezed.dart
-│       │   │   │   └── audit_model.g.dart
-│       │   │   ├── repositories
-│       │   │   │   └── audit_repository_impl.dart
-│       │   │   └── sources
-│       │   │       └── audit_remote_source.dart
-│       │   ├── domain
-│       │   │   ├── entities
-│       │   │   │   └── Audit.dart
-│       │   │   ├── repositories
-│       │   │   │   └── audit_repository.dart
-│       │   │   └── usecases
-│       │   │       └── get_audit_usecase.dart
-│       │   └── presentation
-│       │       ├── notifiers
-│       │       │   └── audit_notifier.dart
-│       │       ├── providers
-│       │       │   └── audit_providers.dart
-│       │       ├── screens
-│       │       │   └── audit_screen.dart
-│       │       ├── states
-│       │       │   └── paginated_audit_state.dart
-│       │       └── widgets
-│       │           ├── card.dart
-│       │           ├── inrow.dart
-│       │           └── MetaItem.dart
-│       ├── trails_screen.dart
-│       └── widgets
-│           └── CategoryItem.dart
+│   └── trade
+│       ├── data
+│       │   ├── model
+│       │   │   ├── trade_model.dart
+│       │   │   ├── trade_model.freezed.dart
+│       │   │   └── trade_model.g.dart
+│       │   ├── repositories
+│       │   │   └── trade_repository_impl.dart
+│       │   └── sources
+│       │       └── trade_remote_source.dart
+│       ├── domain
+│       │   ├── entities
+│       │   │   └── trade.dart
+│       │   ├── repositories
+│       │   │   └── trade_repository.dart
+│       │   └── usecases
+│       │       ├── calculate_total_profit_usecase.dart
+│       │       └── get_trade_usecase.dart
+│       └── presentation
+│           ├── notifiers
+│           │   └── trade_notifier.dart
+│           ├── providers
+│           │   └── trade_providers.dart
+│           ├── screens
+│           │   └── trade_screen.dart
+│           ├── states
+│           │   └── paginated_trade_state.dart
+│           └── widgets
+│               ├── buildContent.dart
+│               ├── buildScaffold.dart
+│               ├── card.dart
+│               ├── inrow.dart
+│               ├── MetaItem.dart
+│               ├── OfflineCard.dart
+│               └── TradeShimmer.dart
 ├── hive
 │   ├── hive_adapters.dart
 │   ├── hive_adapters.g.dart
@@ -268,9 +282,17 @@ lib
 │   ├── app_router.g.dart
 │   ├── fade_extension.dart
 │   └── slide_extension.dart
-└── utils
-    ├── cachefor_extension.dart
-    ├── context_extensions.dart
-    └── url_utils.dart
+├── utils
+│   ├── cachefor_extension.dart
+│   ├── context_extensions.dart
+│   └── url_utils.dart
+└── widgets
+    ├── backup
+    │   └── offline_sms_dialog.dart
+    ├── geolocator
+    │   └── getCurrentLocation.dart
+    ├── offline_sms_dialog.dart
+    └── telephony
+        └── sendEmergencySMS.dart
 
-115 directories, 159 files
+122 directories, 174 files

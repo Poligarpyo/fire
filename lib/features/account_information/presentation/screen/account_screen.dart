@@ -1,14 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
-import '../../../../common/logout_confimation.dart';
-import '../../../../core/storage/auth_local_datasource_provider.dart';
-import '../../../../data/repository/network_repository.dart';
-import '../../../../router/app_router.dart';
-import '../../../authentication/data/hive/user_repository.dart';
-import '../../../authentication/domain/auth/auth_controller.dart';
-import '../../../trails/audit/presentation/screens/audit_screen.dart';
-import '../../domain/entities/Account.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart'; 
+import '../../../../common/logout_confimation.dart';  
 import '../providers/account_providers.dart';
 import '../widgets/AccountError.dart';
 import '../widgets/AccountHeader.dart';

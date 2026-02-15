@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 
 /// @nodoc
 mixin _$LoginCredentials {
-  String get login;
+  String get phone;
   String get password;
 
   /// Create a copy of LoginCredentials
@@ -33,18 +33,18 @@ mixin _$LoginCredentials {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is LoginCredentials &&
-            (identical(other.login, login) || other.login == login) &&
+            (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.password, password) ||
                 other.password == password));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, login, password);
+  int get hashCode => Object.hash(runtimeType, phone, password);
 
   @override
   String toString() {
-    return 'LoginCredentials(login: $login, password: $password)';
+    return 'LoginCredentials(phone: $phone, password: $password)';
   }
 }
 
@@ -54,7 +54,7 @@ abstract mixin class $LoginCredentialsCopyWith<$Res> {
           LoginCredentials value, $Res Function(LoginCredentials) _then) =
       _$LoginCredentialsCopyWithImpl;
   @useResult
-  $Res call({String login, String password});
+  $Res call({String phone, String password});
 }
 
 /// @nodoc
@@ -70,13 +70,13 @@ class _$LoginCredentialsCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? login = null,
+    Object? phone = null,
     Object? password = null,
   }) {
     return _then(_self.copyWith(
-      login: null == login
-          ? _self.login
-          : login // ignore: cast_nullable_to_non_nullable
+      phone: null == phone
+          ? _self.phone
+          : phone // ignore: cast_nullable_to_non_nullable
               as String,
       password: null == password
           ? _self.password
@@ -179,13 +179,13 @@ extension LoginCredentialsPatterns on LoginCredentials {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String login, String password)? $default, {
+    TResult Function(String phone, String password)? $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _LoginCredentials() when $default != null:
-        return $default(_that.login, _that.password);
+        return $default(_that.phone, _that.password);
       case _:
         return orElse();
     }
@@ -206,12 +206,12 @@ extension LoginCredentialsPatterns on LoginCredentials {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String login, String password) $default,
+    TResult Function(String phone, String password) $default,
   ) {
     final _that = this;
     switch (_that) {
       case _LoginCredentials():
-        return $default(_that.login, _that.password);
+        return $default(_that.phone, _that.password);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -231,12 +231,12 @@ extension LoginCredentialsPatterns on LoginCredentials {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String login, String password)? $default,
+    TResult? Function(String phone, String password)? $default,
   ) {
     final _that = this;
     switch (_that) {
       case _LoginCredentials() when $default != null:
-        return $default(_that.login, _that.password);
+        return $default(_that.phone, _that.password);
       case _:
         return null;
     }
@@ -246,12 +246,12 @@ extension LoginCredentialsPatterns on LoginCredentials {
 /// @nodoc
 @JsonSerializable()
 class _LoginCredentials implements LoginCredentials {
-  const _LoginCredentials({required this.login, required this.password});
+  const _LoginCredentials({required this.phone, required this.password});
   factory _LoginCredentials.fromJson(Map<String, dynamic> json) =>
       _$LoginCredentialsFromJson(json);
 
   @override
-  final String login;
+  final String phone;
   @override
   final String password;
 
@@ -275,18 +275,18 @@ class _LoginCredentials implements LoginCredentials {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _LoginCredentials &&
-            (identical(other.login, login) || other.login == login) &&
+            (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.password, password) ||
                 other.password == password));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, login, password);
+  int get hashCode => Object.hash(runtimeType, phone, password);
 
   @override
   String toString() {
-    return 'LoginCredentials(login: $login, password: $password)';
+    return 'LoginCredentials(phone: $phone, password: $password)';
   }
 }
 
@@ -298,7 +298,7 @@ abstract mixin class _$LoginCredentialsCopyWith<$Res>
       __$LoginCredentialsCopyWithImpl;
   @override
   @useResult
-  $Res call({String login, String password});
+  $Res call({String phone, String password});
 }
 
 /// @nodoc
@@ -314,13 +314,13 @@ class __$LoginCredentialsCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $Res call({
-    Object? login = null,
+    Object? phone = null,
     Object? password = null,
   }) {
     return _then(_LoginCredentials(
-      login: null == login
-          ? _self.login
-          : login // ignore: cast_nullable_to_non_nullable
+      phone: null == phone
+          ? _self.phone
+          : phone // ignore: cast_nullable_to_non_nullable
               as String,
       password: null == password
           ? _self.password

@@ -6,7 +6,7 @@ part 'login_request.g.dart';
 @freezed
 abstract class LoginCredentials with _$LoginCredentials {
   const factory LoginCredentials({
-    required String login,
+    required String phone,
     required String password,
   }) = _LoginCredentials;
 

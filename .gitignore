@@ -84,5 +84,9 @@ yarn.lock
 
 
 lib/features/authentication/presentation/login/backup
-
+lib/features/authentication/presentation/register/backup
+lib/features/authentication/presentation/widgets/backup
+lib/widgets/backup
+lib/features/dashboard/presentation/screen/backup
+lib/features/report_incident/presentation/screen/backup
 README.md

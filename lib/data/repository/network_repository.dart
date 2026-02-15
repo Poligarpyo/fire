@@ -28,8 +28,9 @@ class NetworkRepository extends _$NetworkRepository {
         baseUrl: Endpoints.peanutUrl,
         headers: {
           'Accept': 'application/json',
-          'Content-Type': 'application/json; charset=utf-8',
-          'x-api-key': Endpoints.apiKey,
+          'Content-Type':
+              'application/json; charset=utf-8; multipart/form-data',
+          // 'x-api-key': Endpoints.apiKey,
         },
       ),
     );
@@ -50,7 +51,7 @@ class NetworkRepository extends _$NetworkRepository {
 
           if (status == 500) {
             await _handleUnauthorized();
-          } 
+          }
           return handler.next(err);
         },
       ),

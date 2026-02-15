@@ -51,7 +51,7 @@ class LoginCredentialsAdapter extends TypeAdapter<LoginCredentials> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return LoginCredentials(
-      login: fields[3] as String,
+      phone: fields[4] as String,
       password: fields[1] as String,
     );
   }
@@ -62,8 +62,8 @@ class LoginCredentialsAdapter extends TypeAdapter<LoginCredentials> {
       ..writeByte(2)
       ..writeByte(1)
       ..write(obj.password)
-      ..writeByte(3)
-      ..write(obj.login);
+      ..writeByte(4)
+      ..write(obj.phone);
   }
 
   @override

@@ -1,16 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../../common/app_bar_gone.dart';
-import '../../../../core/provider/connectivity_provider.dart';
-import '../../../authentication/domain/auth/auth_controller.dart';
-import '../../domain/entities/trade.dart';
-import '../providers/trade_providers.dart';
-import '../widgets/OfflineCard.dart';
-import '../widgets/TradeShimmer.dart';
-import '../widgets/buildContent.dart';
-import '../widgets/card.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart'; 
+import '../../../../core/provider/connectivity_provider.dart'; 
+import '../providers/trade_providers.dart'; 
+import '../widgets/buildContent.dart'; 
 
 class TradeScreen extends ConsumerStatefulWidget {
   const TradeScreen({super.key});
