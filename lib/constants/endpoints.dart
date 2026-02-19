@@ -15,6 +15,9 @@ class Endpoints {
   static const String exampleNumber = 'example/number';
   static const String exampleHistory = 'example/history';
   static const String exampleFireTruck = 'example/fire-truck';
+  static const String exampleOfflineSms = 'example/offline-sms';
+
+
 
 //
 }

@@ -21,13 +21,23 @@ lib
 │   ├── endpoints.dart
 │   └── strings.dart
 ├── core
+│   ├── database
+│   │   ├── app_database.dart
+│   │   ├── app_database.g.dart
+│   │   └── database_providers.dart
 │   ├── provider
+│   │   ├── connectivity_listener_provider.dart
 │   │   └── connectivity_provider.dart
 │   ├── services
-│   │   └── connectivity_service.dart
-│   └── storage
-│       ├── auth_local_datasource_provider.dart
-│       └── auth_local_datasource.dart
+│   │   ├── connectivity_service.dart
+│   │   └── device_identifier_service.dart
+│   ├── storage
+│   │   ├── auth_local_datasource_provider.dart
+│   │   └── auth_local_datasource.dart
+│   └── sync
+│       ├── emergency_sync_provider.dart
+│       ├── emergency_sync_service.dart
+│       └── sync_trigger_provider.dart
 ├── data
 │   ├── app
 │   │   ├── app_initializer.dart
@@ -148,6 +158,36 @@ lib
 │   │           ├── custom_button.dart
 │   │           ├── custom_text_field.dart
 │   │           └── handleLogin.dart
+│   ├── firetruck
+│   │   ├── data
+│   │   │   ├── model
+│   │   │   │   ├── firetruck_model.dart
+│   │   │   │   ├── firetruck_model.freezed.dart
+│   │   │   │   └── firetruck_model.g.dart
+│   │   │   ├── repositories
+│   │   │   │   └── firetruck_repository_impl.dart
+│   │   │   └── sources
+│   │   │       └── firetruck_remote_source.dart
+│   │   ├── domain
+│   │   │   ├── entities
+│   │   │   │   └── firetruck.dart
+│   │   │   ├── repositories
+│   │   │   │   └── firetruck_repository.dart
+│   │   │   └── usecases
+│   │   │       └── usecases
+│   │   │           └── get_firetruck_usecase.dart
+│   │   └── presentation
+│   │       ├── notifiers
+│   │       │   └── firetruck_notifier.dart
+│   │       ├── providers
+│   │       │   └── firetruck_providers.dart
+│   │       ├── screen
+│   │       │   └── firetruck_tracking.dart
+│   │       ├── states
+│   │       │   ├── firetruck_state.dart
+│   │       │   └── firetruck_state.freezed.dart
+│   │       └── widgets
+│   ├── history
 │   ├── home
 │   │   └── presentation
 │   │       ├── screen
@@ -160,7 +200,41 @@ lib
 │   │               ├── language_tile.dart
 │   │               ├── social_tile_widget.dart
 │   │               └── theme_widget.dart
-│   ├── Promotions
+│   ├── offline_sms
+│   │   ├── data
+│   │   │   ├── model
+│   │   │   │   ├── offline_sms_model.dart
+│   │   │   │   ├── offline_sms_model.freezed.dart
+│   │   │   │   └── offline_sms_model.g.dart
+│   │   │   ├── repositories
+│   │   │   │   └── offline_sms_repository_impl.dart
+│   │   │   └── sources
+│   │   │       └── offline_sms_remote_source.dart
+│   │   ├── domain
+│   │   │   ├── entities
+│   │   │   │   └── offline_sms.dart
+│   │   │   ├── repositories
+│   │   │   │   └── offline_sms_repository.dart
+│   │   │   └── usecases
+│   │   │       └── set_offline_sms_usecase.dart
+│   │   └── presentation
+│   │       ├── notifiers
+│   │       │   └── offline_sms_notifier.dart
+│   │       ├── providers
+│   │       │   └── offline_sms_providers.dart
+│   │       ├── screen
+│   │       │   ├── backup
+│   │       │   │   └── report_incident.dart
+│   │       │   ├── geolocator
+│   │       │   │   └── getCurrentLocation.dart
+│   │       │   ├── offline_sms_screen.dart
+│   │       │   └── telephony
+│   │       │       └── sendEmergencySMS.dart
+│   │       ├── states
+│   │       │   ├── offline_sms_state.dart
+│   │       │   └── offline_sms_state.freezed.dart
+│   │       └── widgets
+│   ├── promotions
 │   │   ├── data
 │   │   │   ├── model
 │   │   │   │   ├── promotion_model.dart
@@ -205,7 +279,7 @@ lib
 │   │   │   ├── repositories
 │   │   │   │   └── report_incident_repository.dart
 │   │   │   └── usecases
-│   │   │       └── send_report_incident_usecase.dart
+│   │   │       └── set_report_incident_usecase.dart
 │   │   └── presentation
 │   │       ├── notifiers
 │   │       │   └── report_incident_notifier.dart
@@ -289,10 +363,6 @@ lib
 └── widgets
     ├── backup
     │   └── offline_sms_dialog.dart
-    ├── geolocator
-    │   └── getCurrentLocation.dart
-    ├── offline_sms_dialog.dart
-    └── telephony
-        └── sendEmergencySMS.dart
+    └── offline_sms_dialog.dart
 
-122 directories, 174 files
+157 directories, 209 files

@@ -31,7 +31,7 @@ enum SGRoute {
 }
 
 @riverpod
-GoRouter goRouter(GoRouterRef ref) {
+GoRouter goRouter(Ref ref) {
   final authStatus = ref.watch(authControllerProvider);
   final publicRoutes = [
     SGRoute.login.route,

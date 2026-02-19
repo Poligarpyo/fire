@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
-import '../../../../widgets/geolocator/getCurrentLocation.dart';
+import '../../../../core/geolocator/getCurrentLocation.dart';
 import '../../domain/entities/report_incident.dart'; 
 import '../../domain/usecases/set_report_incident_usecase.dart';
 import '../states/report_incident_state.dart';

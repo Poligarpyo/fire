@@ -83,10 +83,12 @@ yarn.lock
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
 
 
+README.md
 lib/features/authentication/presentation/login/backup
 lib/features/authentication/presentation/register/backup
 lib/features/authentication/presentation/widgets/backup
 lib/widgets/backup
 lib/features/dashboard/presentation/screen/backup
 lib/features/report_incident/presentation/screen/backup
-README.md
+lib/features/offline_sms/presentation/screen/backup
+lib/core/sync

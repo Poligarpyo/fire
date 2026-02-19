@@ -1,8 +1,6 @@
-import 'dart:async';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'dart:async'; 
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:http/http.dart' as http; 
+import 'package:http/http.dart' as http;
 
 class ConnectivityService {
   final Connectivity _connectivity = Connectivity();
@@ -21,7 +19,8 @@ class ConnectivityService {
   Future<void> _checkInternet() async {
     bool connected = false;
     try {
-      final result = await http.get(Uri.parse('https://google.com'))
+      final result = await http
+          .get(Uri.parse('https://google.com'))
           .timeout(const Duration(seconds: 3));
       if (result.statusCode == 200) connected = true;
     } catch (_) {
@@ -32,7 +31,8 @@ class ConnectivityService {
 
   Future<bool> get isConnected async {
     try {
-      final result = await http.get(Uri.parse('https://google.com'))
+      final result = await http
+          .get(Uri.parse('https://google.com'))
           .timeout(const Duration(seconds: 3));
       return result.statusCode == 200;
     } catch (_) {
@@ -43,4 +43,6 @@ class ConnectivityService {
   void dispose() {
     _controller.close();
   }
+
+  
 }

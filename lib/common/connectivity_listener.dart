@@ -3,8 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../core/provider/connectivity_provider.dart';
-import '../widgets/offline_sms_dialog.dart';
-import 'app_snackbar.dart';
+import '../features/offline_sms/presentation/screen/offline_sms_screen.dart'; 
 import '../common/navigation_keys.dart';
 
 class ConnectivityListener extends ConsumerStatefulWidget {
@@ -18,13 +17,12 @@ class ConnectivityListener extends ConsumerStatefulWidget {
 
 class _ConnectivityListenerState extends ConsumerState<ConnectivityListener> {
   late StreamSubscription<bool> _subscription;
+  bool _dialogShowing = false;
 
   @override
   void initState() {
     super.initState();
     final service = ref.read(connectivityProvider);
-
-    bool _dialogShowing = false;
 
     _subscription = service.connectivityStream.listen((connected) {
       if (connected) {
@@ -35,7 +33,7 @@ class _ConnectivityListenerState extends ConsumerState<ConnectivityListener> {
             content: Text('Back online!'),
             duration: Duration(seconds: 2),
           ),
-        );
+        ); 
       } else {
         if (!_dialogShowing) {
           _dialogShowing = true;

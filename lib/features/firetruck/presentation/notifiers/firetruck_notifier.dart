@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
-import '../../../../widgets/geolocator/getCurrentLocation.dart';
+import '../../../../core/geolocator/getCurrentLocation.dart';
 import '../../domain/entities/firetruck.dart';  
 import '../../domain/usecases/usecases/get_firetruck_usecase.dart';
 import '../states/firetruck_state.dart';

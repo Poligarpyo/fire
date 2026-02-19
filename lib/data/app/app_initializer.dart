@@ -27,6 +27,6 @@ Future<void> appInitializer(Ref ref) async {
   } catch (_) {
     await ref
         .read(authControllerProvider.notifier)
-        .logout(message: 'Session expired. You have been logged out.111');
+        .logout(message: 'Session expired. You have been logged out.');
   }
 }

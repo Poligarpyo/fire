@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../constants/app_colors.dart';
-import '../../../../widgets/geolocator/getCurrentLocation.dart';
+import '../../../../core/geolocator/getCurrentLocation.dart';
 import '../providers/report_incident_providers.dart';
 import '../states/report_incident_state.dart';
 

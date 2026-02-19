@@ -16,11 +16,11 @@ _ReportIncidentModel _$ReportIncidentModelFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$ReportIncidentModelToJson(
-        _ReportIncidentModel instance) =>
-    <String, dynamic>{
-      'latitude': instance.latitude,
-      'longitude': instance.longitude,
-      'incidentType': instance.incidentType,
-      'severityLevel': instance.severityLevel,
-      'additionalDetails': instance.additionalDetails,
-    };
+  _ReportIncidentModel instance,
+) => <String, dynamic>{
+  'latitude': instance.latitude,
+  'longitude': instance.longitude,
+  'incidentType': instance.incidentType,
+  'severityLevel': instance.severityLevel,
+  'additionalDetails': instance.additionalDetails,
+};

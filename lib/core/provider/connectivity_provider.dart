@@ -9,3 +9,4 @@ final connectivityStatusProvider = StreamProvider<bool>((ref) {
   final service = ref.watch(connectivityProvider);
   return service.connectivityStream;
 });
+
