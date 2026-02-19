@@ -14,30 +14,66 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ReportIncidentState {
 
-
+ bool get isLoading; File? get selectedImage; double? get latitude; double? get longitude; String? get errorMessage; bool get isSubmitted;
+/// Create a copy of ReportIncidentState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ReportIncidentStateCopyWith<ReportIncidentState> get copyWith => _$ReportIncidentStateCopyWithImpl<ReportIncidentState>(this as ReportIncidentState, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ReportIncidentState);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ReportIncidentState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.selectedImage, selectedImage) || other.selectedImage == selectedImage)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage)&&(identical(other.isSubmitted, isSubmitted) || other.isSubmitted == isSubmitted));
 }
 
 
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode => Object.hash(runtimeType,isLoading,selectedImage,latitude,longitude,errorMessage,isSubmitted);
 
 @override
 String toString() {
-  return 'ReportIncidentState()';
+  return 'ReportIncidentState(isLoading: $isLoading, selectedImage: $selectedImage, latitude: $latitude, longitude: $longitude, errorMessage: $errorMessage, isSubmitted: $isSubmitted)';
 }
 
 
 }
 
 /// @nodoc
-class $ReportIncidentStateCopyWith<$Res>  {
-$ReportIncidentStateCopyWith(ReportIncidentState _, $Res Function(ReportIncidentState) __);
+abstract mixin class $ReportIncidentStateCopyWith<$Res>  {
+  factory $ReportIncidentStateCopyWith(ReportIncidentState value, $Res Function(ReportIncidentState) _then) = _$ReportIncidentStateCopyWithImpl;
+@useResult
+$Res call({
+ bool isLoading, File? selectedImage, double? latitude, double? longitude, String? errorMessage, bool isSubmitted
+});
+
+
+
+
+}
+/// @nodoc
+class _$ReportIncidentStateCopyWithImpl<$Res>
+    implements $ReportIncidentStateCopyWith<$Res> {
+  _$ReportIncidentStateCopyWithImpl(this._self, this._then);
+
+  final ReportIncidentState _self;
+  final $Res Function(ReportIncidentState) _then;
+
+/// Create a copy of ReportIncidentState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? isLoading = null,Object? selectedImage = freezed,Object? latitude = freezed,Object? longitude = freezed,Object? errorMessage = freezed,Object? isSubmitted = null,}) {
+  return _then(_self.copyWith(
+isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
+as bool,selectedImage: freezed == selectedImage ? _self.selectedImage : selectedImage // ignore: cast_nullable_to_non_nullable
+as File?,latitude: freezed == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable
+as double?,longitude: freezed == longitude ? _self.longitude : longitude // ignore: cast_nullable_to_non_nullable
+as double?,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
+as String?,isSubmitted: null == isSubmitted ? _self.isSubmitted : isSubmitted // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
+}
+
 }
 
 
@@ -55,14 +91,11 @@ extension ReportIncidentStatePatterns on ReportIncidentState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( _Loading value)?  loading,TResult Function( _Success value)?  success,TResult Function( _Error value)?  error,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _ReportIncidentState value)?  $default,{required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _Initial() when initial != null:
-return initial(_that);case _Loading() when loading != null:
-return loading(_that);case _Success() when success != null:
-return success(_that);case _Error() when error != null:
-return error(_that);case _:
+case _ReportIncidentState() when $default != null:
+return $default(_that);case _:
   return orElse();
 
 }
@@ -80,14 +113,11 @@ return error(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( _Loading value)  loading,required TResult Function( _Success value)  success,required TResult Function( _Error value)  error,}){
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _ReportIncidentState value)  $default,){
 final _that = this;
 switch (_that) {
-case _Initial():
-return initial(_that);case _Loading():
-return loading(_that);case _Success():
-return success(_that);case _Error():
-return error(_that);case _:
+case _ReportIncidentState():
+return $default(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -104,14 +134,11 @@ return error(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( _Loading value)?  loading,TResult? Function( _Success value)?  success,TResult? Function( _Error value)?  error,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _ReportIncidentState value)?  $default,){
 final _that = this;
 switch (_that) {
-case _Initial() when initial != null:
-return initial(_that);case _Loading() when loading != null:
-return loading(_that);case _Success() when success != null:
-return success(_that);case _Error() when error != null:
-return error(_that);case _:
+case _ReportIncidentState() when $default != null:
+return $default(_that);case _:
   return null;
 
 }
@@ -128,13 +155,10 @@ return error(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function()?  success,TResult Function( String message)?  error,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isLoading,  File? selectedImage,  double? latitude,  double? longitude,  String? errorMessage,  bool isSubmitted)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _Initial() when initial != null:
-return initial();case _Loading() when loading != null:
-return loading();case _Success() when success != null:
-return success();case _Error() when error != null:
-return error(_that.message);case _:
+case _ReportIncidentState() when $default != null:
+return $default(_that.isLoading,_that.selectedImage,_that.latitude,_that.longitude,_that.errorMessage,_that.isSubmitted);case _:
   return orElse();
 
 }
@@ -152,13 +176,10 @@ return error(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function()  success,required TResult Function( String message)  error,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isLoading,  File? selectedImage,  double? latitude,  double? longitude,  String? errorMessage,  bool isSubmitted)  $default,) {final _that = this;
 switch (_that) {
-case _Initial():
-return initial();case _Loading():
-return loading();case _Success():
-return success();case _Error():
-return error(_that.message);case _:
+case _ReportIncidentState():
+return $default(_that.isLoading,_that.selectedImage,_that.latitude,_that.longitude,_that.errorMessage,_that.isSubmitted);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -175,13 +196,10 @@ return error(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function()?  success,TResult? Function( String message)?  error,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isLoading,  File? selectedImage,  double? latitude,  double? longitude,  String? errorMessage,  bool isSubmitted)?  $default,) {final _that = this;
 switch (_that) {
-case _Initial() when initial != null:
-return initial();case _Loading() when loading != null:
-return loading();case _Success() when success != null:
-return success();case _Error() when error != null:
-return error(_that.message);case _:
+case _ReportIncidentState() when $default != null:
+return $default(_that.isLoading,_that.selectedImage,_that.latitude,_that.longitude,_that.errorMessage,_that.isSubmitted);case _:
   return null;
 
 }
@@ -192,139 +210,48 @@ return error(_that.message);case _:
 /// @nodoc
 
 
-class _Initial implements ReportIncidentState {
-  const _Initial();
+class _ReportIncidentState implements ReportIncidentState {
+  const _ReportIncidentState({this.isLoading = false, this.selectedImage, this.latitude, this.longitude, this.errorMessage, this.isSubmitted = false});
   
 
-
-
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Initial);
-}
-
-
-@override
-int get hashCode => runtimeType.hashCode;
-
-@override
-String toString() {
-  return 'ReportIncidentState.initial()';
-}
-
-
-}
-
-
-
-
-/// @nodoc
-
-
-class _Loading implements ReportIncidentState {
-  const _Loading();
-  
-
-
-
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loading);
-}
-
-
-@override
-int get hashCode => runtimeType.hashCode;
-
-@override
-String toString() {
-  return 'ReportIncidentState.loading()';
-}
-
-
-}
-
-
-
-
-/// @nodoc
-
-
-class _Success implements ReportIncidentState {
-  const _Success();
-  
-
-
-
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Success);
-}
-
-
-@override
-int get hashCode => runtimeType.hashCode;
-
-@override
-String toString() {
-  return 'ReportIncidentState.success()';
-}
-
-
-}
-
-
-
-
-/// @nodoc
-
-
-class _Error implements ReportIncidentState {
-  const _Error(this.message);
-  
-
- final  String message;
+@override@JsonKey() final  bool isLoading;
+@override final  File? selectedImage;
+@override final  double? latitude;
+@override final  double? longitude;
+@override final  String? errorMessage;
+@override@JsonKey() final  bool isSubmitted;
 
 /// Create a copy of ReportIncidentState
 /// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
+@override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$ErrorCopyWith<_Error> get copyWith => __$ErrorCopyWithImpl<_Error>(this, _$identity);
+_$ReportIncidentStateCopyWith<_ReportIncidentState> get copyWith => __$ReportIncidentStateCopyWithImpl<_ReportIncidentState>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Error&&(identical(other.message, message) || other.message == message));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ReportIncidentState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.selectedImage, selectedImage) || other.selectedImage == selectedImage)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage)&&(identical(other.isSubmitted, isSubmitted) || other.isSubmitted == isSubmitted));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,message);
+int get hashCode => Object.hash(runtimeType,isLoading,selectedImage,latitude,longitude,errorMessage,isSubmitted);
 
 @override
 String toString() {
-  return 'ReportIncidentState.error(message: $message)';
+  return 'ReportIncidentState(isLoading: $isLoading, selectedImage: $selectedImage, latitude: $latitude, longitude: $longitude, errorMessage: $errorMessage, isSubmitted: $isSubmitted)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$ErrorCopyWith<$Res> implements $ReportIncidentStateCopyWith<$Res> {
-  factory _$ErrorCopyWith(_Error value, $Res Function(_Error) _then) = __$ErrorCopyWithImpl;
-@useResult
+abstract mixin class _$ReportIncidentStateCopyWith<$Res> implements $ReportIncidentStateCopyWith<$Res> {
+  factory _$ReportIncidentStateCopyWith(_ReportIncidentState value, $Res Function(_ReportIncidentState) _then) = __$ReportIncidentStateCopyWithImpl;
+@override @useResult
 $Res call({
- String message
+ bool isLoading, File? selectedImage, double? latitude, double? longitude, String? errorMessage, bool isSubmitted
 });
 
 
@@ -332,19 +259,24 @@ $Res call({
 
 }
 /// @nodoc
-class __$ErrorCopyWithImpl<$Res>
-    implements _$ErrorCopyWith<$Res> {
-  __$ErrorCopyWithImpl(this._self, this._then);
+class __$ReportIncidentStateCopyWithImpl<$Res>
+    implements _$ReportIncidentStateCopyWith<$Res> {
+  __$ReportIncidentStateCopyWithImpl(this._self, this._then);
 
-  final _Error _self;
-  final $Res Function(_Error) _then;
+  final _ReportIncidentState _self;
+  final $Res Function(_ReportIncidentState) _then;
 
 /// Create a copy of ReportIncidentState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? message = null,}) {
-  return _then(_Error(
-null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
-as String,
+@override @pragma('vm:prefer-inline') $Res call({Object? isLoading = null,Object? selectedImage = freezed,Object? latitude = freezed,Object? longitude = freezed,Object? errorMessage = freezed,Object? isSubmitted = null,}) {
+  return _then(_ReportIncidentState(
+isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
+as bool,selectedImage: freezed == selectedImage ? _self.selectedImage : selectedImage // ignore: cast_nullable_to_non_nullable
+as File?,latitude: freezed == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable
+as double?,longitude: freezed == longitude ? _self.longitude : longitude // ignore: cast_nullable_to_non_nullable
+as double?,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
+as String?,isSubmitted: null == isSubmitted ? _self.isSubmitted : isSubmitted // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 

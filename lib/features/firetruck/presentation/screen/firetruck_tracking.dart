@@ -4,7 +4,7 @@ import 'dart:async';
 
 import '../../../../constants/app_colors.dart';
 import '../../../../router/app_router.dart';
-import '../../../report_incident/presentation/screen/report_incident.dart';
+import '../../../report_incident/presentation/screen/report_incident_screen.dart';
 
 class FireTruckTrackingScreen extends StatefulWidget {
   const FireTruckTrackingScreen({super.key});

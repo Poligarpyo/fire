@@ -1,19 +1,14 @@
-import 'dart:io';
+ 
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart'; 
 
-import '../../../../constants/app_colors.dart';
-import '../../../../core/services/device_identifier_service.dart';
+import '../../../../constants/app_colors.dart'; 
 import '../../../../core/value_objects/phone_number.dart';
-import '../../../authentication/presentation/widgets/custom_text_field.dart';
-import '../../domain/entities/offline_sms.dart';
-import '../../../../core/geolocator/getCurrentLocation.dart';
+import '../../../authentication/presentation/widgets/custom_text_field.dart'; 
 import '../providers/offline_sms_providers.dart';
-import '../states/offline_sms_state.dart';
-import 'telephony/sendEmergencySMS.dart';
+import '../states/offline_sms_state.dart'; 
 
 class OfflineSmsScreen extends ConsumerStatefulWidget {
   const OfflineSmsScreen({super.key});

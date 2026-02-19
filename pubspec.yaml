@@ -71,6 +71,9 @@ dependencies:
   path: ^1.9.1
   drift: ^2.31.0
   drift_flutter: ^0.2.8
+  firebase_storage: ^13.0.6
+  cloud_firestore: ^6.1.2
+  
   # sqlite3_flutter_libs: ^0.6.0+eol
 dev_dependencies:
   flutter_test:

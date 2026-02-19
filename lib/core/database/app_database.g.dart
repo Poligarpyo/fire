@@ -36,9 +36,9 @@ class $EmergencyReportsTable extends EmergencyReports
   late final GeneratedColumn<String> phoneNumber = GeneratedColumn<String>(
     'phone_number',
     aliasedName,
-    false,
+    true,
     type: DriftSqlType.string,
-    requiredDuringInsert: true,
+    requiredDuringInsert: false,
   );
   static const VerificationMeta _latitudeMeta = const VerificationMeta(
     'latitude',
@@ -141,8 +141,6 @@ class $EmergencyReportsTable extends EmergencyReports
           _phoneNumberMeta,
         ),
       );
-    } else if (isInserting) {
-      context.missing(_phoneNumberMeta);
     }
     if (data.containsKey('latitude')) {
       context.handle(
@@ -203,7 +201,7 @@ class $EmergencyReportsTable extends EmergencyReports
       phoneNumber: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}phone_number'],
-      )!,
+      ),
       latitude: attachedDatabase.typeMapping.read(
         DriftSqlType.double,
         data['${effectivePrefix}latitude'],
@@ -236,7 +234,7 @@ class $EmergencyReportsTable extends EmergencyReports
 class EmergencyReport extends DataClass implements Insertable<EmergencyReport> {
   final String id;
   final String message;
-  final String phoneNumber;
+  final String? phoneNumber;
   final double latitude;
   final double longitude;
   final int sentViaSms;
@@ -245,7 +243,7 @@ class EmergencyReport extends DataClass implements Insertable<EmergencyReport> {
   const EmergencyReport({
     required this.id,
     required this.message,
-    required this.phoneNumber,
+    this.phoneNumber,
     required this.latitude,
     required this.longitude,
     required this.sentViaSms,
@@ -257,7 +255,9 @@ class EmergencyReport extends DataClass implements Insertable<EmergencyReport> {
     final map = <String, Expression>{};
     map['id'] = Variable<String>(id);
     map['message'] = Variable<String>(message);
-    map['phone_number'] = Variable<String>(phoneNumber);
+    if (!nullToAbsent || phoneNumber != null) {
+      map['phone_number'] = Variable<String>(phoneNumber);
+    }
     map['latitude'] = Variable<double>(latitude);
     map['longitude'] = Variable<double>(longitude);
     map['sent_via_sms'] = Variable<int>(sentViaSms);
@@ -270,7 +270,9 @@ class EmergencyReport extends DataClass implements Insertable<EmergencyReport> {
     return EmergencyReportsCompanion(
       id: Value(id),
       message: Value(message),
-      phoneNumber: Value(phoneNumber),
+      phoneNumber: phoneNumber == null && nullToAbsent
+          ? const Value.absent()
+          : Value(phoneNumber),
       latitude: Value(latitude),
       longitude: Value(longitude),
       sentViaSms: Value(sentViaSms),
@@ -287,7 +289,7 @@ class EmergencyReport extends DataClass implements Insertable<EmergencyReport> {
     return EmergencyReport(
       id: serializer.fromJson<String>(json['id']),
       message: serializer.fromJson<String>(json['message']),
-      phoneNumber: serializer.fromJson<String>(json['phoneNumber']),
+      phoneNumber: serializer.fromJson<String?>(json['phoneNumber']),
       latitude: serializer.fromJson<double>(json['latitude']),
       longitude: serializer.fromJson<double>(json['longitude']),
       sentViaSms: serializer.fromJson<int>(json['sentViaSms']),
@@ -301,7 +303,7 @@ class EmergencyReport extends DataClass implements Insertable<EmergencyReport> {
     return <String, dynamic>{
       'id': serializer.toJson<String>(id),
       'message': serializer.toJson<String>(message),
-      'phoneNumber': serializer.toJson<String>(phoneNumber),
+      'phoneNumber': serializer.toJson<String?>(phoneNumber),
       'latitude': serializer.toJson<double>(latitude),
       'longitude': serializer.toJson<double>(longitude),
       'sentViaSms': serializer.toJson<int>(sentViaSms),
@@ -313,7 +315,7 @@ class EmergencyReport extends DataClass implements Insertable<EmergencyReport> {
   EmergencyReport copyWith({
     String? id,
     String? message,
-    String? phoneNumber,
+    Value<String?> phoneNumber = const Value.absent(),
     double? latitude,
     double? longitude,
     int? sentViaSms,
@@ -322,7 +324,7 @@ class EmergencyReport extends DataClass implements Insertable<EmergencyReport> {
   }) => EmergencyReport(
     id: id ?? this.id,
     message: message ?? this.message,
-    phoneNumber: phoneNumber ?? this.phoneNumber,
+    phoneNumber: phoneNumber.present ? phoneNumber.value : this.phoneNumber,
     latitude: latitude ?? this.latitude,
     longitude: longitude ?? this.longitude,
     sentViaSms: sentViaSms ?? this.sentViaSms,
@@ -391,7 +393,7 @@ class EmergencyReport extends DataClass implements Insertable<EmergencyReport> {
 class EmergencyReportsCompanion extends UpdateCompanion<EmergencyReport> {
   final Value<String> id;
   final Value<String> message;
-  final Value<String> phoneNumber;
+  final Value<String?> phoneNumber;
   final Value<double> latitude;
   final Value<double> longitude;
   final Value<int> sentViaSms;
@@ -412,7 +414,7 @@ class EmergencyReportsCompanion extends UpdateCompanion<EmergencyReport> {
   EmergencyReportsCompanion.insert({
     required String id,
     required String message,
-    required String phoneNumber,
+    this.phoneNumber = const Value.absent(),
     required double latitude,
     required double longitude,
     required int sentViaSms,
@@ -421,7 +423,6 @@ class EmergencyReportsCompanion extends UpdateCompanion<EmergencyReport> {
     this.rowid = const Value.absent(),
   }) : id = Value(id),
        message = Value(message),
-       phoneNumber = Value(phoneNumber),
        latitude = Value(latitude),
        longitude = Value(longitude),
        sentViaSms = Value(sentViaSms);
@@ -452,7 +453,7 @@ class EmergencyReportsCompanion extends UpdateCompanion<EmergencyReport> {
   EmergencyReportsCompanion copyWith({
     Value<String>? id,
     Value<String>? message,
-    Value<String>? phoneNumber,
+    Value<String?>? phoneNumber,
     Value<double>? latitude,
     Value<double>? longitude,
     Value<int>? sentViaSms,
@@ -540,7 +541,7 @@ typedef $$EmergencyReportsTableCreateCompanionBuilder =
     EmergencyReportsCompanion Function({
       required String id,
       required String message,
-      required String phoneNumber,
+      Value<String?> phoneNumber,
       required double latitude,
       required double longitude,
       required int sentViaSms,
@@ -552,7 +553,7 @@ typedef $$EmergencyReportsTableUpdateCompanionBuilder =
     EmergencyReportsCompanion Function({
       Value<String> id,
       Value<String> message,
-      Value<String> phoneNumber,
+      Value<String?> phoneNumber,
       Value<double> latitude,
       Value<double> longitude,
       Value<int> sentViaSms,
@@ -740,7 +741,7 @@ class $$EmergencyReportsTableTableManager
               ({
                 Value<String> id = const Value.absent(),
                 Value<String> message = const Value.absent(),
-                Value<String> phoneNumber = const Value.absent(),
+                Value<String?> phoneNumber = const Value.absent(),
                 Value<double> latitude = const Value.absent(),
                 Value<double> longitude = const Value.absent(),
                 Value<int> sentViaSms = const Value.absent(),
@@ -762,7 +763,7 @@ class $$EmergencyReportsTableTableManager
               ({
                 required String id,
                 required String message,
-                required String phoneNumber,
+                Value<String?> phoneNumber = const Value.absent(),
                 required double latitude,
                 required double longitude,
                 required int sentViaSms,

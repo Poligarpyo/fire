@@ -22,6 +22,7 @@ class _ReportIncidentScreenState extends ConsumerState<ReportIncidentScreen> {
   String selectedSeverity = 'Minor (Small fire, controllable)';
   final TextEditingController _detailsController = TextEditingController();
   File? selectedImage;
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
@@ -30,69 +31,61 @@ class _ReportIncidentScreenState extends ConsumerState<ReportIncidentScreen> {
   }
 
   void _handleSendReport() {
-    final message = _detailsController.text.trim();
-
-    if (message.isEmpty) {
-      _showError('Please enter a message');
-      return;
-    }
-
-    ref.read(reportIncidentNotifierProvider.notifier).sendReport(
+    ref
+        .read(reportIncidentNotifierProvider.notifier)
+        .sendReport(
           incidentType: selectedIncidentType,
           severity: selectedSeverity,
-          details: message,
-          selectedImage: selectedImage,
+          details: _detailsController.text.trim(),
         );
-  }
-
-  void _showError(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-        backgroundColor: Colors.red,
-      ),
-    );
   }
 
   void _handleOpenCamera() {
     ref.read(reportIncidentNotifierProvider.notifier).pickImage();
   }
 
+  void _handleRemoveImage() {
+    ref.read(reportIncidentNotifierProvider.notifier).removeImage();
+  }
+
   @override
   Widget build(BuildContext context) {
-    ref.listen<ReportIncidentState>(
-      reportIncidentNotifierProvider,
-      (previous, next) {
-        next.whenOrNull(
-          error: (message) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(message),
-                backgroundColor: Colors.red,
-              ),
-            );
-          },
-          success: () {
-            showDialog(
-              context: context,
-              builder: (_) => AlertDialog(
-                title: const Text("Report Sent"),
-                content: const Text(
-                    "Your emergency report has been sent successfully."),
-                actions: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: const Text("OK"),
-                  )
-                ],
-              ),
-            );
-          },
+    ref.listen<ReportIncidentState>(reportIncidentNotifierProvider, (
+      previous,
+      next,
+    ) {
+      // 🔴 Show error Snackbar
+      if (next.errorMessage != null &&
+          next.errorMessage != previous?.errorMessage) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(next.errorMessage!),
+            backgroundColor: Colors.red,
+          ),
         );
-      },
-    );
+      }
+
+      // ✅ Show success dialog
+      if (next.isSubmitted && previous?.isSubmitted != true) {
+        showDialog(
+          context: context,
+          builder: (_) => AlertDialog(
+            title: const Text("Report Sent"),
+            content: const Text(
+              "Your emergency report has been sent successfully.",
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text("OK"),
+              ),
+            ],
+          ),
+        );
+      }
+    });
 
     final state = ref.watch(reportIncidentNotifierProvider);
 
@@ -110,7 +103,7 @@ class _ReportIncidentScreenState extends ConsumerState<ReportIncidentScreen> {
                 padding: const EdgeInsets.all(20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [ 
+                  children: [
                     // Incident Type
                     _buildIncidentTypeSection(),
 
@@ -148,9 +141,7 @@ class _ReportIncidentScreenState extends ConsumerState<ReportIncidentScreen> {
   Widget _buildHeader() {
     return Container(
       width: double.infinity,
-      decoration: const BoxDecoration(
-        color: AppColors.primaryRed,
-      ),
+      decoration: const BoxDecoration(color: AppColors.primaryRed),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
         child: Column(
@@ -191,10 +182,7 @@ class _ReportIncidentScreenState extends ConsumerState<ReportIncidentScreen> {
                       ),
                       Text(
                         'USR-1P741AKHA',
-                        style: TextStyle(
-                          color: Colors.white70,
-                          fontSize: 12,
-                        ),
+                        style: TextStyle(color: Colors.white70, fontSize: 12),
                       ),
                     ],
                   ),
@@ -239,10 +227,7 @@ class _ReportIncidentScreenState extends ConsumerState<ReportIncidentScreen> {
             // Subtitle
             const Text(
               'Your location is being tracked',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 14,
-              ),
+              style: TextStyle(color: Colors.white, fontSize: 14),
             ),
           ],
         ),
@@ -330,23 +315,24 @@ class _ReportIncidentScreenState extends ConsumerState<ReportIncidentScreen> {
               isExpanded: true,
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
               borderRadius: BorderRadius.circular(12),
-              items: [
-                'Minor (Small fire, controllable)',
-                'Moderate (Medium fire, spreading)',
-                'Major (Large fire, uncontrollable)',
-                'Critical (Life threatening)',
-              ].map((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(
-                    value,
-                    style: const TextStyle(
-                      fontSize: 15,
-                      color: AppColors.primaryText,
-                    ),
-                  ),
-                );
-              }).toList(),
+              items:
+                  [
+                    'Minor (Small fire, controllable)',
+                    'Moderate (Medium fire, spreading)',
+                    'Major (Large fire, uncontrollable)',
+                    'Critical (Life threatening)',
+                  ].map((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(
+                        value,
+                        style: const TextStyle(
+                          fontSize: 15,
+                          color: AppColors.primaryText,
+                        ),
+                      ),
+                    );
+                  }).toList(),
               onChanged: (String? newValue) {
                 if (newValue != null) {
                   setState(() => selectedSeverity = newValue);
@@ -360,23 +346,11 @@ class _ReportIncidentScreenState extends ConsumerState<ReportIncidentScreen> {
   }
 
   Widget _buildCapturePhotoSection() {
-    final notifier = ref.watch(reportIncidentNotifierProvider.notifier);
+    final notifier = ref.watch(reportIncidentNotifierProvider);
     final image = notifier.selectedImage;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (image != null) ...[
-          const SizedBox(height: 16),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(12),
-            child: Image.file(
-              image,
-              height: 200,
-              width: double.infinity,
-              fit: BoxFit.cover,
-            ),
-          ),
-        ],
         const Row(
           children: [
             Icon(Icons.camera_alt, color: AppColors.primaryRed, size: 22),
@@ -426,14 +400,51 @@ class _ReportIncidentScreenState extends ConsumerState<ReportIncidentScreen> {
 
                 const SizedBox(height: 16),
 
-                const Text(
-                  'Tap to Open Camera',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.primaryText,
+                if (image != null) ...[
+                  const SizedBox(height: 16),
+                  Stack(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: Image.file(
+                          image,
+                          height: 200,
+                          width: double.infinity,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      // Delete button on top-right corner
+                      Positioned(
+                        top: 8,
+                        right: 8,
+                        child: GestureDetector(
+                          onTap: _handleRemoveImage,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.black54,
+                              shape: BoxShape.circle,
+                            ),
+                            padding: const EdgeInsets.all(6),
+                            child: const Icon(
+                              Icons.close,
+                              color: Colors.white,
+                              size: 20,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
+                ] else ...[
+                  const Text(
+                    'Tap to Open Camera',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.primaryText,
+                    ),
+                  ),
+                ],
 
                 const SizedBox(height: 8),
 
@@ -504,10 +515,7 @@ class _ReportIncidentScreenState extends ConsumerState<ReportIncidentScreen> {
 
                 const Text(
                   '* Camera access required. Photo will include location metadata.',
-                  style: TextStyle(
-                    fontSize: 11,
-                    color: AppColors.hintText,
-                  ),
+                  style: TextStyle(fontSize: 11, color: AppColors.hintText),
                   textAlign: TextAlign.center,
                 ),
               ],
@@ -540,17 +548,11 @@ class _ReportIncidentScreenState extends ConsumerState<ReportIncidentScreen> {
           child: TextField(
             controller: _detailsController,
             maxLines: 5,
-            style: const TextStyle(
-              fontSize: 15,
-              color: AppColors.primaryText,
-            ),
+            style: const TextStyle(fontSize: 15, color: AppColors.primaryText),
             decoration: const InputDecoration(
               hintText:
                   'Describe the situation, number of people affected, accessibility issues...',
-              hintStyle: TextStyle(
-                color: AppColors.hintText,
-                fontSize: 14,
-              ),
+              hintStyle: TextStyle(color: AppColors.hintText, fontSize: 14),
               border: InputBorder.none,
               contentPadding: EdgeInsets.all(16),
             ),
@@ -561,29 +563,27 @@ class _ReportIncidentScreenState extends ConsumerState<ReportIncidentScreen> {
   }
 
   Widget _buildSendButton(ReportIncidentState state) {
+    final isLoading = state.isLoading;
+
     return SizedBox(
       width: double.infinity,
       height: 56,
       child: ElevatedButton(
-        onPressed: state.maybeWhen(
-          loading: () => null,
-          orElse: () => _handleSendReport,
-        ),
-        style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.primaryRed,
-        ),
-        child: state.when(
-          initial: () => _buildButtonContent(),
-          loading: () => const SizedBox(
-            height: 22,
-            width: 22,
-            child: CircularProgressIndicator(
-              strokeWidth: 2,
-              valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-            ),
-          ),
-          success: () => _buildButtonContent(),
-          error: (_) => _buildButtonContent(),
+        onPressed: isLoading ? null : _handleSendReport,
+        style: ElevatedButton.styleFrom(backgroundColor: AppColors.primaryRed),
+        child: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 300),
+          child: isLoading
+              ? const SizedBox(
+                  key: ValueKey('loading'),
+                  height: 22,
+                  width: 22,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2,
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                  ),
+                )
+              : _buildButtonContent(),
         ),
       ),
     );
@@ -593,19 +593,16 @@ class _ReportIncidentScreenState extends ConsumerState<ReportIncidentScreen> {
     return const Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(
-          Icons.send,
-          size: 22,
-          color: Colors.white,
-        ),
+        Icon(Icons.send, size: 22, color: Colors.white),
         SizedBox(width: 10),
         Text(
           'Send Emergency Report',
           style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-              letterSpacing: 0.5,
-              color: Colors.white),
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+            letterSpacing: 0.5,
+            color: Colors.white,
+          ),
         ),
       ],
     );
@@ -622,20 +619,12 @@ class MapGridPainter extends CustomPainter {
 
     // Draw vertical lines
     for (double i = 0; i < size.width; i += 40) {
-      canvas.drawLine(
-        Offset(i, 0),
-        Offset(i, size.height),
-        paint,
-      );
+      canvas.drawLine(Offset(i, 0), Offset(i, size.height), paint);
     }
 
     // Draw horizontal lines
     for (double i = 0; i < size.height; i += 40) {
-      canvas.drawLine(
-        Offset(0, i),
-        Offset(size.width, i),
-        paint,
-      );
+      canvas.drawLine(Offset(0, i), Offset(size.width, i), paint);
     }
   }
 

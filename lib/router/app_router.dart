@@ -12,7 +12,7 @@ import '../features/authentication/presentation/register/backup/register_screen.
 import '../features/authentication/presentation/register/register_screen.dart'; 
 import '../features/firetruck/presentation/screen/firetruck_tracking.dart';
 import '../features/home/presentation/screen/home_screen.dart';
-import '../features/report_incident/presentation/screen/report_incident.dart';
+import '../features/report_incident/presentation/screen/report_incident_screen.dart';
 import 'fade_extension.dart';
 
 part 'app_router.g.dart';
@@ -42,8 +42,8 @@ GoRouter goRouter(Ref ref) {
   ];
   return GoRouter(
     // initialLocation: SGRoute.login.route,
-    // initialLocation: SGRoute.reportIncident.route,
-    initialLocation: SGRoute.trackfiretruck.route,
+    initialLocation: SGRoute.reportIncident.route,
+    // initialLocation: SGRoute.trackfiretruck.route,
     navigatorKey: rootNavigatorKey, // ✅ Pass here
     redirect: (context, state) {
       final isAuthenticated = authStatus == AuthStatus.authenticated;

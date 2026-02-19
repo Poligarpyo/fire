@@ -96,7 +96,7 @@ extension on EmergencyReport {
     return OfflineSmsModel(
       id: id,
       message: message,
-      phoneNumber: phoneNumber,
+      phoneNumber: phoneNumber ?? '',
       latitude: latitude,
       longitude: longitude,
       sentViaSms: sentViaSms == 1,
