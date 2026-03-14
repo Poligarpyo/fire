@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'dart:async';
 
-import '../../../../constants/app_colors.dart';
+import '../../../../shared/constants/app_colors.dart';
 import '../../../../router/app_router.dart';
-import '../../../report_incident/presentation/screen/report_incident_screen.dart';
+import '../../../report_incident/presentation/screens/report_incident_screen.dart';
+import '../widgets/map_grid_painter.dart';
 
 class FireTruckTrackingScreen extends StatefulWidget {
   const FireTruckTrackingScreen({super.key});

@@ -1,19 +1,16 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart'; 
 import 'package:telephony/telephony.dart';
 
 import '../../../../core/database/database_providers.dart';
 import '../../../../core/provider/connectivity_provider.dart';
-import '../../../../core/storage/auth_local_datasource_provider.dart';
-import '../../../../data/repository/network_repository.dart';
+import '../../../../core/storage/auth_local_datasource_provider.dart'; 
 import '../../data/repositories/offline_sms_repository_impl.dart';
-import '../../data/sources/offline_sms_remote_source.dart';
-import '../../domain/entities/offline_sms.dart';
+import '../../data/sources/offline_sms_remote_source.dart'; 
 import '../../domain/repositories/offline_sms_repository.dart';
 import '../../domain/usecases/set_offline_sms_usecase.dart';
-import '../notifiers/offline_sms_notifier.dart';
-import '../states/offline_sms_state.dart';
+import '../controllers/offline_sms/notifier.dart';
+import '../controllers/offline_sms/state.dart'; 
 
 final dioProvider = Provider<Dio>((ref) {
   return Dio();
@@ -44,11 +41,3 @@ final sendOfflineSmsUseCaseProvider = Provider<SendOfflineSmsUseCase>((ref) {
   return SendOfflineSmsUseCase(repository);
 });
 
-final offlineSmsNotifierProvider =
-    StateNotifierProvider<OfflineSmsNotifier, OfflineSmsState>((ref) {
-      final sendOfflineSmsUseCase = ref.read(sendOfflineSmsUseCaseProvider);
-      return OfflineSmsNotifier(
-        sendOfflineSmsUseCase,
-        ref.read(offlineSmsRepositoryProvider),
-      );
-    });

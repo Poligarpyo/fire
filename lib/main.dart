@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_ce/hive.dart';
 import 'package:hive_ce_flutter/hive_flutter.dart';
 
-import 'constants/strings.dart';
+import 'shared/constants/strings.dart';
 import 'core/storage/auth_local_datasource.dart';
 import 'data/app/app_initializer.dart';
 import 'firebase_options.dart';

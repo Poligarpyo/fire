@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../constants/endpoints.dart';
+import '../../../shared/constants/endpoints.dart';
 import '../../../core/storage/auth_local_datasource_provider.dart';
 import '../../../data/repository/network_repository.dart';
 import '../domain/login_request.dart';

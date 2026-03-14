@@ -1,7 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../../common/app_snackbar.dart';
-import '../../../../common/navigation_keys.dart';
+import '../../../../shared/common/app_snackbar.dart';
+import '../../../../shared/common/navigation_keys.dart';
 import '../../../../core/storage/auth_local_datasource_provider.dart';
 import '../../../../data/repository/network_repository.dart';
 import '../../data/hive/user_repository.dart';

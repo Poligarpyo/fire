@@ -6,10 +6,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'common/connectivity_listener.dart';
-import 'common/navigation_keys.dart';
-import 'config/theme/theme_logic.dart';
-import 'config/theme/theme_ui_model.dart';
+import 'shared/common/connectivity_listener.dart';
+import 'shared/common/navigation_keys.dart';
+import 'shared/config/theme/theme_logic.dart';
+import 'shared/config/theme/theme_ui_model.dart';
 import 'core/provider/connectivity_listener_provider.dart';
 import 'core/sync/sync_trigger_provider.dart';
 import 'features/authentication/domain/auth/auth_controller.dart';

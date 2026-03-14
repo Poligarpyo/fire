@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_ce/hive.dart';
 
-import '../config/theme/theme_ui_model.dart';
+import '../shared/config/theme/theme_ui_model.dart';
 import '../features/authentication/domain/login_request.dart';
 
 // ignore: always_specify_types

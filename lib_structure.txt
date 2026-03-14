@@ -1,43 +1,34 @@
 lib
-├── common
-│   ├── app_bar_gone.dart
-│   ├── app_snackbar.dart
-│   ├── connectivity_listener.dart
-│   ├── grid_item.dart
-│   ├── link_card.dart
-│   ├── logout_confimation.dart
-│   └── navigation_keys.dart
-├── config
-│   └── theme
-│       ├── theme_logic.dart
-│       ├── theme_logic.g.dart
-│       ├── theme_ui_model.dart
-│       ├── theme_ui_model.freezed.dart
-│       └── theme_ui_model.g.dart
-├── constants
-│   ├── app_colors.dart
-│   ├── assets.dart
-│   ├── dio_helper.dart
-│   ├── endpoints.dart
-│   └── strings.dart
 ├── core
 │   ├── database
 │   │   ├── app_database.dart
 │   │   ├── app_database.g.dart
 │   │   └── database_providers.dart
+│   ├── geolocator
+│   │   └── getCurrentLocation.dart
+│   ├── logger
+│   │   ├── app_logger.dart
+│   │   └── log_interceptor.dart
 │   ├── provider
 │   │   ├── connectivity_listener_provider.dart
 │   │   └── connectivity_provider.dart
+│   ├── result
+│   │   ├── app_failure.dart
+│   │   └── result.dart
 │   ├── services
-│   │   ├── connectivity_service.dart
-│   │   └── device_identifier_service.dart
+│   │   └── connectivity_service.dart
 │   ├── storage
 │   │   ├── auth_local_datasource_provider.dart
 │   │   └── auth_local_datasource.dart
-│   └── sync
-│       ├── emergency_sync_provider.dart
-│       ├── emergency_sync_service.dart
-│       └── sync_trigger_provider.dart
+│   ├── sync
+│   │   ├── emergency_sync_provider.dart
+│   │   ├── emergency_sync_service.dart
+│   │   └── sync_trigger_provider.dart
+│   ├── ui
+│   │   ├── global_loader_provider.dart
+│   │   └── loading_overlay.dart
+│   └── value_objects
+│       └── phone_number.dart
 ├── data
 │   ├── app
 │   │   ├── app_initializer.dart
@@ -53,6 +44,7 @@ lib
 │       ├── network_repository.dart
 │       └── network_repository.g.dart
 ├── exceptions
+│   ├── invalid_phone_number_exception.dart
 │   ├── network_exceptions.dart
 │   ├── no_internet_exception.dart
 │   └── requestPermissions.dart
@@ -187,6 +179,7 @@ lib
 │   │       │   ├── firetruck_state.dart
 │   │       │   └── firetruck_state.freezed.dart
 │   │       └── widgets
+│   │           └── map_grid_painter.dart
 │   ├── history
 │   ├── home
 │   │   └── presentation
@@ -202,7 +195,7 @@ lib
 │   │               └── theme_widget.dart
 │   ├── offline_sms
 │   │   ├── data
-│   │   │   ├── model
+│   │   │   ├── models
 │   │   │   │   ├── offline_sms_model.dart
 │   │   │   │   ├── offline_sms_model.freezed.dart
 │   │   │   │   └── offline_sms_model.g.dart
@@ -218,54 +211,24 @@ lib
 │   │   │   └── usecases
 │   │   │       └── set_offline_sms_usecase.dart
 │   │   └── presentation
-│   │       ├── notifiers
-│   │       │   └── offline_sms_notifier.dart
+│   │       ├── controllers
+│   │       │   └── offline_sms
+│   │       │       ├── notifier.dart
+│   │       │       ├── state.dart
+│   │       │       └── state.freezed.dart
 │   │       ├── providers
 │   │       │   └── offline_sms_providers.dart
 │   │       ├── screen
 │   │       │   ├── backup
+│   │       │   │   ├── offline_sms_screen.dart
 │   │       │   │   └── report_incident.dart
-│   │       │   ├── geolocator
-│   │       │   │   └── getCurrentLocation.dart
 │   │       │   ├── offline_sms_screen.dart
 │   │       │   └── telephony
 │   │       │       └── sendEmergencySMS.dart
-│   │       ├── states
-│   │       │   ├── offline_sms_state.dart
-│   │       │   └── offline_sms_state.freezed.dart
 │   │       └── widgets
-│   ├── promotions
-│   │   ├── data
-│   │   │   ├── model
-│   │   │   │   ├── promotion_model.dart
-│   │   │   │   ├── promotion_model.freezed.dart
-│   │   │   │   └── promotion_model.g.dart
-│   │   │   ├── repositories
-│   │   │   │   └── promotion_repository_impl.dart
-│   │   │   └── sources
-│   │   │       └── promotion_remote_source.dart
-│   │   ├── domain
-│   │   │   ├── entities
-│   │   │   │   └── promotion.dart
-│   │   │   ├── repositories
-│   │   │   │   └── promotion_repository.dart
-│   │   │   └── usecases
-│   │   │       └── get_promotion_usecase.dart
-│   │   └── presentation
-│   │       ├── notifiers
-│   │       ├── providers
-│   │       │   └── promotion_provider.dart
-│   │       ├── screen
-│   │       │   └── promotion_screen.dart
-│   │       ├── states
-│   │       └── widgets
-│   │           ├── CTAButton.dart
-│   │           ├── EmptyState.dart
-│   │           ├── PromotionCard.dart
-│   │           └── PromotionCardSkeleton.dart
 │   ├── report_incident
 │   │   ├── data
-│   │   │   ├── model
+│   │   │   ├── models
 │   │   │   │   ├── report_incident_model.dart
 │   │   │   │   ├── report_incident_model.freezed.dart
 │   │   │   │   └── report_incident_model.g.dart
@@ -279,25 +242,34 @@ lib
 │   │   │   ├── repositories
 │   │   │   │   └── report_incident_repository.dart
 │   │   │   └── usecases
-│   │   │       └── set_report_incident_usecase.dart
+│   │   │       └── send_report_incident_usecase.dart
 │   │   └── presentation
-│   │       ├── notifiers
-│   │       │   └── report_incident_notifier.dart
+│   │       ├── controllers
+│   │       │   └── report_incident
+│   │       │       ├── notifier.dart
+│   │       │       ├── state.dart
+│   │       │       └── state.freezed.dart
 │   │       ├── providers
 │   │       │   └── report_incident_providers.dart
-│   │       ├── screen
+│   │       ├── screens
 │   │       │   ├── backup
+│   │       │   │   ├── report_incident copy.dart
+│   │       │   │   ├── report_incident_screen.dart
 │   │       │   │   └── report_incident.dart
-│   │       │   └── report_incident.dart
-│   │       ├── states
-│   │       │   ├── report_incident_state.dart
-│   │       │   └── report_incident_state.freezed.dart
+│   │       │   └── report_incident_screen.dart
 │   │       └── widgets
+│   │           ├── additional_details_section.dart
+│   │           ├── capture_photo_section.dart
+│   │           ├── incident_type_section.dart
+│   │           ├── report_header.dart
+│   │           ├── report_incident_listener.dart
+│   │           ├── send_button.dart
+│   │           └── severity_section.dart
 │   ├── templates
 │   │   ├── data
-│   │   │   ├── model
-│   │   │   ├── repositories
-│   │   │   └── sources
+│   │   │   ├── datasources
+│   │   │   ├── models
+│   │   │   └── repositories
 │   │   ├── domain
 │   │   │   ├── entities
 │   │   │   ├── repositories
@@ -343,6 +315,7 @@ lib
 │               ├── MetaItem.dart
 │               ├── OfflineCard.dart
 │               └── TradeShimmer.dart
+├── firebase_options.dart
 ├── hive
 │   ├── hive_adapters.dart
 │   ├── hive_adapters.g.dart
@@ -356,13 +329,36 @@ lib
 │   ├── app_router.g.dart
 │   ├── fade_extension.dart
 │   └── slide_extension.dart
-├── utils
-│   ├── cachefor_extension.dart
-│   ├── context_extensions.dart
-│   └── url_utils.dart
-└── widgets
-    ├── backup
-    │   └── offline_sms_dialog.dart
-    └── offline_sms_dialog.dart
+├── shared
+│   ├── common
+│   │   ├── app_bar_gone.dart
+│   │   ├── app_snackbar.dart
+│   │   ├── connectivity_listener.dart
+│   │   ├── grid_item.dart
+│   │   ├── link_card.dart
+│   │   ├── logout_confimation.dart
+│   │   └── navigation_keys.dart
+│   ├── config
+│   │   └── theme
+│   │       ├── theme_logic.dart
+│   │       ├── theme_logic.g.dart
+│   │       ├── theme_ui_model.dart
+│   │       ├── theme_ui_model.freezed.dart
+│   │       └── theme_ui_model.g.dart
+│   ├── constants
+│   │   ├── app_colors.dart
+│   │   ├── assets.dart
+│   │   ├── dio_helper.dart
+│   │   ├── endpoints.dart
+│   │   └── strings.dart
+│   └── widgets
+│       ├── backup
+│       │   └── offline_sms_dialog.dart
+│       ├── offline_sms_dialog.dart
+│       └── primary_loading_button.dart
+└── utils
+    ├── cachefor_extension.dart
+    ├── context_extensions.dart
+    └── url_utils.dart
 
-157 directories, 209 files
+147 directories, 215 files

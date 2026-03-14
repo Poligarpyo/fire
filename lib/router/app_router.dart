@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../common/navigation_keys.dart';
+import '../shared/common/navigation_keys.dart';
 import '../features/account_information/presentation/screen/account_screen.dart';
 import '../features/authentication/domain/auth/auth_controller.dart';
 import '../features/authentication/presentation/login/login_screen.dart';
@@ -12,7 +12,7 @@ import '../features/authentication/presentation/register/backup/register_screen.
 import '../features/authentication/presentation/register/register_screen.dart'; 
 import '../features/firetruck/presentation/screen/firetruck_tracking.dart';
 import '../features/home/presentation/screen/home_screen.dart';
-import '../features/report_incident/presentation/screen/report_incident_screen.dart';
+import '../features/report_incident/presentation/screens/report_incident_screen.dart';
 import 'fade_extension.dart';
 
 part 'app_router.g.dart';
@@ -37,8 +37,8 @@ GoRouter goRouter(Ref ref) {
     SGRoute.login.route,
     SGRoute.register.route,
     SGRoute.forgotPassword.route,
-    SGRoute.reportIncident.route,  
     SGRoute.trackfiretruck.route,  
+    SGRoute.reportIncident.route,  
   ];
   return GoRouter(
     // initialLocation: SGRoute.login.route,

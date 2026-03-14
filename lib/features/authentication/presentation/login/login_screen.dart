@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../constants/app_colors.dart';
+import '../../../../shared/constants/app_colors.dart';
 import '../../../../router/app_router.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_text_field.dart';

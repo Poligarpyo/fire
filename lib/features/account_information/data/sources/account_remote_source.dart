@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart'; 
-import '../../../../../constants/endpoints.dart';
-import '../../../../constants/dio_helper.dart';
+import '../../../../shared/constants/endpoints.dart';
+import '../../../../shared/constants/dio_helper.dart';
 import '../../../../core/storage/auth_local_datasource.dart'; 
 import '../model/account_model.dart';
 

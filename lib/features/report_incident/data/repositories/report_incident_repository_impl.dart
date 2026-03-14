@@ -1,8 +1,10 @@
+import '../../../../core/result/app_failure.dart'; 
+import '../../../../core/result/result.dart'; 
 import '../../../../core/services/connectivity_service.dart';
 import '../../../../exceptions/no_internet_exception.dart';
 import '../../domain/entities/report_incident.dart';
 import '../../domain/repositories/report_incident_repository.dart';
-import '../model/report_incident_model.dart';
+import '../models/report_incident_model.dart';
 import '../sources/report_incident_remote_source.dart';
 
 class ReportIncidentRepositoryImpl implements ReportIncidentRepository {
@@ -13,22 +15,14 @@ class ReportIncidentRepositoryImpl implements ReportIncidentRepository {
     required this.remoteDataSource,
     required this.connectivity,
   });
-
+  
   @override
-  Future<List<ReportIncident>> getReportIncident(
-      {required int limit, String search = ''}) async {
-    // Check internet first
-    final isConnected = await connectivity.isConnected;
-    if (!isConnected) {
-      throw NoInternetException(); // <-- your custom exception
+  Future<Result<void>> sendReport(ReportIncident report) async {
+    try {
+      await remoteDataSource.sendReport(report);
+      return const Success(null);
+    } catch (e) {
+      return Failure(AppFailure(message: e.toString()));
     }
-
-    final models = await remoteDataSource.fetchReportIncident(limit: limit);
-    return models.map((e) => e.toEntity()).toList();
-  }
-
-  @override
-  Future<void> sendReport(ReportIncident report) {
-    return remoteDataSource.sendReport(report);
   }
 }

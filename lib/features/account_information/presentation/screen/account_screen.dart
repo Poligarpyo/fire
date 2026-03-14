@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart'; 
-import '../../../../common/logout_confimation.dart';  
+import '../../../../shared/common/logout_confimation.dart';  
 import '../providers/account_providers.dart';
 import '../widgets/AccountError.dart';
 import '../widgets/AccountHeader.dart';

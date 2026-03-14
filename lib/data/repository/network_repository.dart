@@ -5,9 +5,9 @@ import 'package:dio/dio.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../common/app_snackbar.dart';
-import '../../common/navigation_keys.dart';
-import '../../constants/endpoints.dart';
+import '../../shared/common/app_snackbar.dart';
+import '../../shared/common/navigation_keys.dart';
+import '../../shared/constants/endpoints.dart';
 import '../../core/storage/auth_local_datasource_provider.dart';
 import '../../features/authentication/data/hive/user_repository.dart';
 import '../../features/authentication/domain/auth/auth_controller.dart';

@@ -1,14 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:path/path.dart';
 import 'package:riverpod/riverpod.dart';
-import '../../../../../constants/dio_helper.dart';
-import '../../../../../constants/endpoints.dart';
+import '../../../../shared/constants/dio_helper.dart';
+import '../../../../shared/constants/endpoints.dart';
 import '../../../../core/storage/auth_local_datasource.dart';
 import '../../../../data/app/app_initializer.dart';
 import '../../../../data/repository/network_repository.dart';
 import '../../../../exceptions/network_exceptions.dart';
 import '../../domain/entities/offline_sms.dart';
-import '../model/offline_sms_model.dart';
+import '../models/offline_sms_model.dart';
 
 // features/offline_sms/data/sources/offline_sms_remote_source.dart
 class OfflineSmsRemoteSource {

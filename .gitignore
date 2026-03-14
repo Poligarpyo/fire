@@ -91,4 +91,5 @@ lib/widgets/backup
 lib/features/dashboard/presentation/screen/backup
 lib/features/report_incident/presentation/screen/backup
 lib/features/offline_sms/presentation/screen/backup
+lib/features/report_incident/presentation/screens/backup
 lib/core/sync

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import '../../../../common/app_bar_gone.dart';
+import '../../../../shared/common/app_bar_gone.dart';
 import '../notifiers/trade_notifier.dart';
 import '../states/paginated_trade_state.dart';
 import 'card.dart';

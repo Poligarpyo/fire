@@ -8,7 +8,7 @@ import '../../../../core/services/connectivity_service.dart';
 import '../../../../exceptions/no_internet_exception.dart';
 import '../../domain/entities/offline_sms.dart';
 import '../../domain/repositories/offline_sms_repository.dart';
-import '../model/offline_sms_model.dart';
+import '../models/offline_sms_model.dart';
 import '../sources/offline_sms_remote_source.dart';
 import 'package:telephony/telephony.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -69,15 +69,7 @@ class OfflineSmsRepositoryImpl implements OfflineSmsRepository {
     }
   }
 
-  @override
-  Future<void> markAsSent(String id) async {
-    // final sms = await localDataSource.getById(id);
-
-    // if (sms != null) {
-    //   final updated = sms.copyWith(sentViaSms: true);
-    //   await localDataSource.update(updated);
-    // }
-  }
+ 
 
   @override
   Future<void> sendEmergencySMS(String message) async {

@@ -8,8 +8,7 @@ import '../../../../../utils/context_extensions.dart';
 import '../../../../core/storage/auth_local_datasource.dart';
 import '../../../../core/storage/auth_local_datasource_provider.dart';
 import '../../../../data/repository/network_repository.dart';
-import '../../../../router/app_router.dart';
-import '../../../promotions/presentation/screen/promotion_screen.dart';
+import '../../../../router/app_router.dart'; 
 import '../../../account_information/presentation/screen/account_screen.dart';
 import '../../../authentication/data/hive/user_repository.dart';
 import '../../../trade/presentation/screens/trade_screen.dart';
@@ -31,7 +30,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     super.initState();
     _screens = const <Widget>[
       TradeScreen(),
-      PromotionsScreen(), 
+      // PromotionsScreen(), 
       AccountScreen(),
     ];
   }

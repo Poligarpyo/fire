@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:path/path.dart';
 import 'package:riverpod/riverpod.dart';
-import '../../../../../constants/dio_helper.dart';
-import '../../../../../constants/endpoints.dart';
+import '../../../../shared/constants/dio_helper.dart';
+import '../../../../shared/constants/endpoints.dart';
 import '../../../../core/storage/auth_local_datasource.dart';
 import '../../../../data/app/app_initializer.dart';
 import '../../../../data/repository/network_repository.dart';
