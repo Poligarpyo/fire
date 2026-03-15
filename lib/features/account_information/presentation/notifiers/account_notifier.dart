@@ -1,7 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart'; 
 
-import '../../domain/entities/Account.dart';
-import '../states/paginated_account_state.dart';
+import '../../domain/entities/Account.dart'; 
 import '../../domain/usecases/get_account_usecase.dart';
 
 class AccountNotifier extends StateNotifier<AsyncValue<Account>> {

@@ -1,4 +1,6 @@
-import 'package:telephony/telephony.dart';
+// ignore: file_names
+
+import 'package:another_telephony/telephony.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 final Telephony telephony = Telephony.instance;

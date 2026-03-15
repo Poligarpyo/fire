@@ -1,6 +1,6 @@
+import 'package:another_telephony/telephony.dart';
 import 'package:drift/drift.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:telephony/telephony.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart'; 
 
 import '../../../../core/database/app_database.dart';
 import '../../../../core/database/database_providers.dart';
@@ -9,8 +9,7 @@ import '../../../../exceptions/no_internet_exception.dart';
 import '../../domain/entities/offline_sms.dart';
 import '../../domain/repositories/offline_sms_repository.dart';
 import '../models/offline_sms_model.dart';
-import '../sources/offline_sms_remote_source.dart';
-import 'package:telephony/telephony.dart';
+import '../sources/offline_sms_remote_source.dart'; 
 import 'package:permission_handler/permission_handler.dart';
 
 // features/offline_sms/data/repositories/offline_sms_repository_impl.dart

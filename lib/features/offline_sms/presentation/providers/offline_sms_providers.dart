@@ -1,6 +1,7 @@
+import 'package:another_telephony/telephony.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart'; 
-import 'package:telephony/telephony.dart';
+ 
 
 import '../../../../core/database/database_providers.dart';
 import '../../../../core/provider/connectivity_provider.dart';
