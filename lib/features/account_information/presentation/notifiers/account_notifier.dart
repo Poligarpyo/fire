@@ -1,13 +1,11 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart'; 
-
-import '../../domain/entities/Account.dart'; 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../domain/entities/Account.dart';
 import '../../domain/usecases/get_account_usecase.dart';
 
 class AccountNotifier extends StateNotifier<AsyncValue<Account>> {
   final GetAccountUseCase _getAccountUseCase;
 
-  AccountNotifier(this._getAccountUseCase)
-      : super(const AsyncValue.loading()) {
+  AccountNotifier(this._getAccountUseCase) : super(const AsyncValue.loading()) {
     fetchAccount();
   }
 
@@ -25,4 +23,3 @@ class AccountNotifier extends StateNotifier<AsyncValue<Account>> {
     await fetchAccount();
   }
 }
-
