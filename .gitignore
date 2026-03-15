@@ -22,7 +22,7 @@
 **/doc/api/
 .dart_tool/
 .flutter-plugins
-.flutter-plugins-dependencies
+ 
 .packages
 .pub-cache/
 .pub/
@@ -70,10 +70,7 @@
 # Service account files
 svc-keyfile.json
 
-# Lockfiles
-# Podfile.lock
-# pubspec.lock
-# yarn.lock
+ 
 
 # Exceptions to above rules.
 !**/ios/**/default.mode1v3
